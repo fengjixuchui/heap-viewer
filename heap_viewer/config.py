@@ -36,15 +36,19 @@ def load():
     m.libc_base = get_libc_base()
 
     if m.ptr_size == 4:
-        m.get_ptr = idc.Dword
+        m.get_ptr = idc.get_wide_dword
     elif m.ptr_size == 8:
-        m.get_ptr = idc.Qword
+        m.get_ptr = idc.get_qword
 
     m.ptr_mask = (1 << 8*m.ptr_size)-1
     m.program_module = get_program_module()
 
-    with open(CONFIG_PATH, 'rb') as f:
-        config = json.loads(f.read())
+    try:
+        with open(CONFIG_PATH, 'rb') as f:
+            config = json.loads(f.read())
+    except Exception as e:
+        # default config
+        config = {}
 
     m.stop_during_tracing = config.get('stop_during_tracing', True)
     m.start_tracing_at_startup = config.get('start_tracing_at_startup', False)
@@ -85,7 +89,8 @@ def dump():
 
 def save():
     with open(CONFIG_PATH, 'wb') as f:
-        f.write(dump())
+        config_json = dump().encode("utf-8")
+        f.write(config_json)
 
 """
 def update_file(data):

@@ -10,11 +10,11 @@ Currently supports the glibc malloc implementation (ptmalloc2).
 
 ## Requirements
 
-* IDA Pro >= 6.9
+* IDA Pro >= 7.0
 
 ## Tested on
 
-* glibc 2.23 <= 2.28 (x86, x64)
+* glibc 2.23 <= 2.29 (x86, x64)
 
 ## Features
 
@@ -116,7 +116,7 @@ I'd recommend the following resources alongside this tool for learning heap expl
 
 * Daniel García Gutiérrez - @danigargu
 
-## Contribuitors :beer:
+## Contributors :beer:
 
 Special mention to my colleagues [soez][soez], [wagiro][wagiro] and [DiaLluvioso][DiaLluvioso] for give me some ideas during the development of the plugin. And of course, the [@pwndbg](https://github.com/pwndbg/pwndbg/) project, from which I picked up some things about heap parsing.
 
